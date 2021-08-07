@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Container, Card, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap"
-import { useMediaQuery } from 'react-responsive'
 import ReactHtmlParser from 'react-html-parser'
 import StarRatings from 'react-star-ratings'
 
