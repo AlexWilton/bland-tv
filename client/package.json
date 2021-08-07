@@ -1,0 +1,43 @@
+{
+  "name": "tvbland-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.1",
+    "bootstrap": "^4.5.3",
+    "concurrently": "^4.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.14.0",
+    "react-bootstrap": "^1.4.0",
+    "react-dom": "^16.14.0",
+    "react-html-parser": "^2.0.2",
+    "react-icons": "^4.2.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "3.4.4",
+    "react-star-ratings": "^2.3.0",
+    "serve": "^11.3.2",
+    "typeface-montserrat": "^1.1.13"
+  },
+  "scripts": {
+    "start": "PORT=3006 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:6000"
+}

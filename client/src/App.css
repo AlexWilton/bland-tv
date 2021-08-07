@@ -1,0 +1,114 @@
+a {
+  color: #4C5FAB;
+}
+
+a:hover {
+  color: #3EB3E3;
+}
+
+
+
+.App {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.topNavbar {
+  padding-top: 50px;
+  padding-left: 35px;
+  padding-bottom: 10px;
+  text-align: left;
+  background-color: #3EB3E3;
+}
+
+.topHeaderDesc {
+  background-color: #3EB3E3;
+  padding-left: 50px;
+  padding-bottom: 80px;
+  color: white
+}
+
+
+.topHeaderDesc>p, .navbar-brand {
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0 0 0 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #3EB3E3;
+  height: 50px;
+}
+
+.showcase {
+  top: 300px;
+  position: absolute;
+  padding-bottom: 50px;
+}
+
+.showcaseCard {
+  width: 160px;
+  max-height: 450px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.showcaseImg {
+  width: 100%;
+}
+
+.card-body {
+  padding-top: 5px;
+}
+
+.maxlines {
+  display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 10.5em;
+  line-height: 1.5em;
+}
+
+.mainContainer {
+  background-position: bottom;
+  margin-bottom: 250px;
+}
+
+main {
+  background-color: #d2eef9;
+  padding-left: 35px;
+  padding-right: 50px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  min-height: 250px;
+  border-color: #8491c8;
+  margin-bottom: 100px;
+}
+
+.spinner:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #808080;
+  animation: spinner .6s linear infinite;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
