@@ -1,4 +1,14 @@
  # Bland TV
+ 
+## Description
+TV Show and web series database.
+Create personalised schedules. Episode guide, cast, crew and character information.
+
+## Screenshots
+
+![Schedule Page](https://i.ibb.co/FnJwsqB/Screen-Shot-2021-08-07-at-6-58-20-PM.png)
+![Show Page](https://i.ibb.co/DpjPxRm/Screen-Shot-2021-08-07-at-6-57-48-PM.png)
+
 
 
 ## Usage
