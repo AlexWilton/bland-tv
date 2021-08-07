@@ -33,37 +33,57 @@ const Show = (props) => {
     return (<Table hover borderless size={"sm"}>
       <tbody>
         <tr key="1">
-          <td className="middleAlign" style={{ whiteSpace: "nowrap" }}>
+          <td style={{ whiteSpace: "nowrap" }}>
             <strong>Streamed on</strong>
           </td>
-          <td className="middleAlign">
+          <td>
             {streamedOn}
           </td>
         </tr >
         <tr key="2">
-          <td className="middleAlign">
+          <td>
             <strong>Schedule</strong>
           </td>
-          <td className="middleAlign">
+          <td>
             {schedule}
           </td>
         </tr >
         <tr key="3">
-          <td className="middleAlign">
+          <td>
             <strong>Status</strong>
           </td>
-          <td className="middleAlign">
+          <td>
             {status}
           </td>
         </tr >
         <tr key="4">
-          <td className="middleAlign">
+          <td>
             <strong>Genres</strong>
           </td>
-          <td className="middleAlign">
+          <td>
             {genres || "[No Genres listed]"}
           </td>
         </tr >
+      </tbody>
+    </Table>)
+  }
+
+  const StaringTable = () => {
+    const cast = (show && show.cast) || []
+
+    return (<Table hover borderless size={"sm"}>
+      <tbody>
+        {cast.map(castMember => {
+          console.log(castMember)
+          return (<tr key={castMember.person.id}>
+            <td style={{ whiteSpace: "nowrap" }}>
+              <strong>{castMember.person.name}</strong>
+            </td>
+            <td style={{ whiteSpace: "nowrap" }}>
+              {castMember.character.name}
+            </td>
+          </tr >)
+        })}
       </tbody>
     </Table>)
   }
@@ -102,20 +122,17 @@ const Show = (props) => {
               <h3>Show Info</h3>
               <br />
               <ShowInfoTable />
+              <br /><br />
             </Col>
             <Col>
               <h3>Staring</h3>
               <br />
-              <Col>Person</Col>
-              <Col>Person</Col>
-              <Col>Person</Col>
-              <Col>Person</Col>
+              <StaringTable />
+              <br /><br />
             </Col>
 
           </Row>
         </Container>
-        <br /><br /><br /><br /><br />
-        {JSON.stringify(show)}
       </main>
     </div >))
 }

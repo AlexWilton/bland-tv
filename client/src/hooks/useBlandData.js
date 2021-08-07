@@ -30,7 +30,7 @@ export const BlandDataProvider = ({ children }) => {
     }, [shows])
 
     const refreshAndGetShow = useCallback(async (showId) => {
-        const show = (await getShowInfo(showId)).data.result
+        const show = (await getShowInfo(showId)).data
         console.log(show)
         setShows({...shows, showId: show})
         return show
