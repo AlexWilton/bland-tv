@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import { Container, Table, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap"
+import { Container, Table, Row, Col } from "react-bootstrap"
 import ReactHtmlParser from 'react-html-parser'
 import StarRatings from 'react-star-ratings'
 
@@ -17,7 +16,7 @@ const Show = (props) => {
       setShow(await getShow(showId))
     }
     getData()
-  }, [])
+  }, [getShow, showId])
 
   const showName = show && show.name
 

@@ -8,15 +8,15 @@ import useBlandData from "../hooks/useBlandData"
 
 
 const Home = () => {
-  const { getSchudule } = useBlandData()
+  const { getSchedule } = useBlandData()
   const [schedule, setSchedule] = useState(null)
 
   useEffect(() => {
     const getData = async () => {
-      setSchedule(await getSchudule())
+      setSchedule(await getSchedule())
     }
     getData()
-  }, [])
+  }, [getSchedule])
 
   const ShowCardsGrid = () => {
     const cards = schedule && schedule.map(scheduleItem => {
