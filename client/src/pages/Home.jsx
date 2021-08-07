@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Container, Card, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap"
+import { useMediaQuery } from 'react-responsive'
 import ReactHtmlParser from 'react-html-parser'
 import StarRatings from 'react-star-ratings'
 
@@ -18,12 +19,11 @@ const Home = () => {
     getData()
   }, [])
 
-
   const ShowCardsGrid = () => {
     const cards = schedule && schedule.map(scheduleItem => {
       const extraName = scheduleItem && scheduleItem.name
-      const scheduleItemId = scheduleItem && scheduleItem.id
       const show = scheduleItem.show && scheduleItem.show
+      const showId = show && show.id
       let img = (show && show.image && show.image.medium && show.image.medium)
       if (!img) img = "/img/tv2.png"
       const renderTooltip = (props) => (
@@ -32,11 +32,13 @@ const Home = () => {
           {ReactHtmlParser(show.summary)}
         </Tooltip>
       )
-      console.log(show.name)
-      const rating = show.name ? (show.name.charCodeAt(0) > 77 ? 4 : 5) : 4
+
+      // rating data arriving null from api... this is a placeholder until geniune rating data can be found:
+      const rating = show.name ? (show.name.charCodeAt(0) > 77 ? 4 : 5) : 4 
+
       return (<Col style={{ paddingRight: "0px" }}>
 
-        <Link to={`/show/${scheduleItemId}`}>
+        <Link to={`/show/${showId}`}>
           <Card className="showcaseCard">
             <OverlayTrigger
               placement="bottom"
@@ -87,7 +89,7 @@ const Home = () => {
         <h5><strong>Last Added Shows</strong></h5>
       </div>
       <main>
-        <ShowCardsGrid />
+        <ShowCardsGrid/>
       </main>
     </div>)
 }

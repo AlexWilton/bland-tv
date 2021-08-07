@@ -1,95 +1,123 @@
 import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
-import { Container, Card, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap"
+import { Container, Table, Row, Col, Tooltip, OverlayTrigger } from "react-bootstrap"
 import ReactHtmlParser from 'react-html-parser'
 import StarRatings from 'react-star-ratings'
 
 import useBlandData from "../hooks/useBlandData"
 
 
-const Home = () => {
-  const { getSchudule } = useBlandData()
-  const [schedule, setSchedule] = useState(null)
+const Show = (props) => {
+  const showId = props.match.params.showId
+  const { getShow } = useBlandData()
+  const [show, setShow] = useState(null)
 
   useEffect(() => {
     const getData = async () => {
-      setSchedule(await getSchudule())
+      setShow(await getShow(showId))
     }
     getData()
   }, [])
 
+  const showName = show && show.name
 
-  const ShowCardsGrid = () => {
-    const cards = schedule && schedule.map(scheduleItem => {
-      const extraName = scheduleItem && scheduleItem.name
-      const scheduleItemId = scheduleItem && scheduleItem.id
-      const show = scheduleItem.show && scheduleItem.show
-      let img = (show && show.image && show.image.medium && show.image.medium)
-      if (!img) img = "/img/tv2.png"
-      const renderTooltip = (props) => (
-        <Tooltip {...props}>
-          <strong>Summary:</strong>
-          {ReactHtmlParser(show.summary)}
-        </Tooltip>
-      )
-      console.log(show.name)
-      const rating = show.name ? (show.name.charCodeAt(0) > 77 ? 4 : 5) : 4
-      return (<Col style={{ paddingRight: "0px" }}>
+  // rating data arriving null from api... this is a placeholder until geniune rating data can be found:
+  const rating = showName ? (showName.charCodeAt(0) > 77 ? 4 : 5) : 4
 
-        <Link to={`/show/${scheduleItemId}`}>
-          <Card className="showcaseCard">
-            <OverlayTrigger
-              placement="bottom"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-            >
-              <Card.Img className="showcaseImg" variant="top" src={img} />
-            </OverlayTrigger>
-            <Card.Body>
-              <StarRatings
-                rating={rating}
-                starRatedColor="#3EB3E3"
-                numberOfStars={5}
-                starDimension="10px"
-                name='rating'
-              />
-              <Card.Title>{show.name}</Card.Title>
-              <footer>
-                {extraName}
-              </footer>
-            </Card.Body>
-          </Card>
-        </Link>
+  const ShowInfoTable = () => {
+    const streamedOn = show && show.network && show.network.name
+    const schedule = show && show.schedule && show.schedule.days.join(", ")
+    const status = show && show.status
+    const genres = show && show.genres && show.genres.join(", ")
 
-      </Col>
-      )
-    })
-
-    return (<div className="showcase">
-      <Container fluid="sm">
-        <Row>
-          {cards}
-        </Row>
-      </Container>
-    </div>)
+    return (<Table hover borderless size={"sm"}>
+      <tbody>
+        <tr key="1">
+          <td className="middleAlign" style={{ whiteSpace: "nowrap" }}>
+            <strong>Streamed on</strong>
+          </td>
+          <td className="middleAlign">
+            {streamedOn}
+          </td>
+        </tr >
+        <tr key="2">
+          <td className="middleAlign">
+            <strong>Schedule</strong>
+          </td>
+          <td className="middleAlign">
+            {schedule}
+          </td>
+        </tr >
+        <tr key="3">
+          <td className="middleAlign">
+            <strong>Status</strong>
+          </td>
+          <td className="middleAlign">
+            {status}
+          </td>
+        </tr >
+        <tr key="4">
+          <td className="middleAlign">
+            <strong>Genres</strong>
+          </td>
+          <td className="middleAlign">
+            {genres || "[No Genres listed]"}
+          </td>
+        </tr >
+      </tbody>
+    </Table>)
   }
 
   return (
-    <div>
+    (<div>
       <div className="topHeaderDesc">
-        <p>
-          TV Show and web series database.<br />
-          Create personalised schedules. Episode guide, cast, crew
-          and character information
-        </p>
-        <br />
-        <br />
-        <h5><strong>Last Added Shows</strong></h5>
+        <Container>
+          <Row>
+            <Col xs={12} lg={3}>
+              <img className="showImage" src={show && show.image && show.image.medium} alt={showName} />
+            </Col>
+
+            <Col>
+              <p>
+                <StarRatings
+                  rating={rating}
+                  starRatedColor="#ffffff"
+                  numberOfStars={5}
+                  starDimension="10px"
+                  name='rating'
+                /> <small style={{ position: "relative", top: "2px", right: "-10px" }}>{rating} / 5</small>
+                <br /><br />
+                <h3>{showName}</h3><br />
+                {ReactHtmlParser(show && show.summary)}
+              </p>
+            </Col>
+          </Row>
+        </Container>
       </div>
       <main>
-        <ShowCardsGrid />
+        <Container>
+          <br />
+          <Row>
+            <Col xs="12" md="6">
+              <h3>Show Info</h3>
+              <br />
+              <ShowInfoTable />
+            </Col>
+            <Col>
+              <h3>Staring</h3>
+              <br />
+              <Col>Person</Col>
+              <Col>Person</Col>
+              <Col>Person</Col>
+              <Col>Person</Col>
+            </Col>
+
+          </Row>
+        </Container>
+        <br /><br /><br /><br /><br />
+        {JSON.stringify(show)}
       </main>
-    </div>)
+    </div >))
 }
 
-export default Home
+export default Show
