@@ -18,10 +18,16 @@ const Show = (props) => {
     getData()
   }, [getShow, showId])
 
+  // show loading spinner while loading show data
+  if (show == null) return (<div className="spinner"/>)
+
   const showName = show && show.name
 
   // rating data arriving null from api... this is a placeholder until geniune rating data can be found:
   const rating = showName ? (showName.charCodeAt(0) > 77 ? 4 : 5) : 4
+
+  let imgSrc = show && show.image && show.image.medium
+  if (!imgSrc) imgSrc = "/img/tv2.png" //placeholder image if not image provided
 
   const ShowInfoTable = () => {
     const streamedOn = show && show.network && show.network.name
@@ -92,7 +98,7 @@ const Show = (props) => {
         <Container>
           <Row>
             <Col xs={12} lg={3}>
-              <img className="showImage" src={show && show.image && show.image.medium} alt={showName} />
+              <img className="showImage" src={imgSrc} alt={showName} />
             </Col>
 
             <Col>

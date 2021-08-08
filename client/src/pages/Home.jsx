@@ -19,6 +19,10 @@ const Home = () => {
   }, [getSchedule])
 
   const ShowCardsGrid = () => {
+
+    // show loading spinner while loading schedule data
+    if (schedule == null) return (<div className="spinner" />)
+
     const cards = schedule && schedule.map(scheduleItem => {
       const extraName = scheduleItem && scheduleItem.name
       const show = scheduleItem.show && scheduleItem.show
@@ -33,7 +37,7 @@ const Home = () => {
       )
 
       // rating data arriving null from api... this is a placeholder until geniune rating data can be found:
-      const rating = show.name ? (show.name.charCodeAt(0) > 77 ? 4 : 5) : 4 
+      const rating = show.name ? (show.name.charCodeAt(0) > 77 ? 4 : 5) : 4
 
       return (<Col key={show.name} style={{ paddingRight: "0px" }}>
 
@@ -88,7 +92,7 @@ const Home = () => {
         <h5><strong>Last Added Shows</strong></h5>
       </div>
       <main>
-        <ShowCardsGrid/>
+        <ShowCardsGrid />
       </main>
     </div>)
 }

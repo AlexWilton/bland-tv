@@ -107,8 +107,8 @@ main {
   margin-top: -10px;
   margin-left: -10px;
   border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top-color: #808080;
+  border: 5px solid #ccc;
+  border-top-color: #ffffff;
   animation: spinner .6s linear infinite;
 }
 
