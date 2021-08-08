@@ -73,7 +73,6 @@ const Show = (props) => {
     return (<Table hover borderless size={"sm"}>
       <tbody>
         {cast.map(castMember => {
-          console.log(castMember)
           return (<tr key={castMember.person.id}>
             <td style={{ whiteSpace: "nowrap" }}>
               <strong>{castMember.person.name}</strong>

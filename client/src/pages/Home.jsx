@@ -35,7 +35,7 @@ const Home = () => {
       // rating data arriving null from api... this is a placeholder until geniune rating data can be found:
       const rating = show.name ? (show.name.charCodeAt(0) > 77 ? 4 : 5) : 4 
 
-      return (<Col style={{ paddingRight: "0px" }}>
+      return (<Col key={show.name} style={{ paddingRight: "0px" }}>
 
         <Link to={`/show/${showId}`}>
           <Card className="showcaseCard">

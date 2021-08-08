@@ -24,8 +24,9 @@ export const BlandDataProvider = ({ children }) => {
 
     const refreshAndGetShow = useCallback(async (showId) => {
         const show = (await getShowInfo(showId)).data
-        console.log(show)
-        setShows({...shows, showId: show})
+        const updatedShows = shows
+        updatedShows[showId] = show
+        setShows(updatedShows)
         return show
     }, [shows])
 
